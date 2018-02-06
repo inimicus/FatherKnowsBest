@@ -12,8 +12,8 @@ FKB.dbVersion   = 1
 FKB.saltySailor = nil
 
 FKB.defaults = {
-	autoSelect = true,
-	wisdom = {}
+    autoSelect = true,
+    wisdom = {}
 }
 
 -- -----------------------------------------------------------------------------
@@ -33,21 +33,21 @@ end
 
 
 function FKB.SpreadWisdom()
-	local wisdom = FKB.preferences.wisdom
+    local wisdom = FKB.preferences.wisdom
 
-	-- If no Wisdom saved
-	if (#FKB.GetKeys(wisdom) < 1) then
-		d('No Wisdom Found!')
-		return
-	end
+    -- If no Wisdom saved
+    if (#FKB.GetKeys(wisdom) < 1) then
+        d('No Wisdom Found!')
+        return
+    end
 
-	-- If we should auto select reply target
-	-- AND we've received salt recently
-	if (FKB.preferences.autoSelect and FKB.saltySailor) then
-		StartChatInput("", CHAT_CHANNEL_WHISPER, FKB.saltySailor)
-	end
+    -- If we should auto select reply target
+    -- AND we've received salt recently
+    if (FKB.preferences.autoSelect and FKB.saltySailor) then
+        StartChatInput("", CHAT_CHANNEL_WHISPER, FKB.saltySailor)
+    end
 
-	-- Place Wisdom into chat box
+    -- Place Wisdom into chat box
     CHAT_SYSTEM.textEntry:Open(FKB.GetRandom(wisdom))
 end
 
@@ -58,16 +58,16 @@ function FKB.DidReceiveWhisper(id, type, name, text)
 end
 
 function FKB.GetRandom(selection)
-	local keys = FKB.GetKeys(selection)
-	return selection[keys[math.random(#keys)]]
+    local keys = FKB.GetKeys(selection)
+    return selection[keys[math.random(#keys)]]
 end
 
 function FKB.GetKeys(selection)
-	local keys = {}
-	for k in pairs(selection) do
-		table.insert(keys, k)
-	end
-	return keys
+    local keys = {}
+    for k in pairs(selection) do
+        table.insert(keys, k)
+    end
+    return keys
 end
 
 -- -----------------------------------------------------------------------------

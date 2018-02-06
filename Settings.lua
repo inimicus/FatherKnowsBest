@@ -75,9 +75,9 @@ local optionsTable = {
     },
     [8] = {
         type = "description",
-        title = "TODO",	--(optional)
+        title = "TODO", --(optional)
         text = "Editing and managing wisdom coming in a future update. In the meantime, you will see feedback about your added wisdom in the chat log. To remove or edit wisdom, logout and edit |cFFCCCCSavedVariables/FatherKnowsBest.lua|r. More work is needed as LibAddonMenu 2.0 does not provide dynamic selection boxes built-in.",
-        width = "full",	--or "half" (optional)
+        width = "full", --or "half" (optional)
     },
     --[8] = {
     --    type = "dropdown",
@@ -87,8 +87,8 @@ local optionsTable = {
     --    choices = Phrases,
     --    getFunc = function() return "Local Empty" end,
     --    setFunc = function(var) print(var) end,
-	--	--scrollable = true,
-	--	sort = "name-down",
+    --  --scrollable = true,
+    --  sort = "name-down",
     --    width = "full",
     --},
     --[9] = {
@@ -131,20 +131,20 @@ end
 
 function SaveWisdom()
     FKB.preferences.wisdom[newPhrase.title] = newPhrase.phrase
-	d("Added Wisdom: " .. newPhrase.phrase)
+    d("Added Wisdom: " .. newPhrase.phrase)
     newPhrase = {}
 end
 
 function PopulatePhrases()
-	local wisdom = FKB.preferences.wisdom
-	local keys = {}
+    local wisdom = FKB.preferences.wisdom
+    local keys = {}
 
-	for k in pairs(wisdom) do
-		table.insert(keys, k)
-	end
+    for k in pairs(wisdom) do
+        table.insert(keys, k)
+    end
 
-	--d(keys)
-	Phrases = keys
+    --d(keys)
+    Phrases = keys
 end
 -- -----------------------------------------------------------------------------
 -- Initialize Settings
@@ -152,7 +152,7 @@ end
 
 function FKB.InitSettings()
     LAM:RegisterAddonPanel(FKB.name, panelData)
-	PopulatePhrases()
+    PopulatePhrases()
     LAM:RegisterOptionControls(FKB.name, optionsTable)
 end
 
