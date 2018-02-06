@@ -7,7 +7,7 @@
 -- -----------------------------------------------------------------------------
 FKB             = {}
 FKB.name        = "FatherKnowsBest"
-FKB.version     = "1.0.0"
+FKB.version     = "1.0.1"
 FKB.dbVersion   = 1
 FKB.saltySailor = nil
 

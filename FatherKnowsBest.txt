@@ -6,7 +6,7 @@
 
 ## Title: Father Knows best
 ## Description: Let everyone know why you are the Father of the Year.
-## Version: 1.0.0
+## Version: 1.0.1
 ## Author: |cFFCCCC@g4rr3t|r
 ## APIVersion: 100021 100022
 ## SavedVariables: FatherKnowsBestWisdom
