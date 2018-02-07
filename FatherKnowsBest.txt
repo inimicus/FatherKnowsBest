@@ -12,10 +12,6 @@
 ## SavedVariables: FatherKnowsBestWisdom
 ## OptionalDependsOn: LibStub LibAddonMenu-2.0 LibSlashCommander
 
-FatherKnowsBest.lua
-Settings.lua
-bindings.xml
-
 lib/LibStub/LibStub.lua
 lib/LibAddonMenu-2.0/LibAddonMenu-2.0.lua
 lib/LibAddonMenu-2.0/controls/panel.lua
@@ -34,4 +30,9 @@ lib/LibAddonMenu-2.0/controls/iconpicker.lua
 lib/LibAddonMenu-2.0/controls/divider.lua
 lib/LibSlashCommander/LibSlashCommander.lua
 lib/LibSlashCommander/descriptions/$(language).lua
+
+FatherKnowsBest.lua
+Settings.lua
+SlashCommands.lua
+bindings.xml
 

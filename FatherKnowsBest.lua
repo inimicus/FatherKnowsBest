@@ -13,6 +13,7 @@ FKB.saltySailor = nil
 
 FKB.defaults = {
     autoSelect = true,
+    bindRandom = true,
     wisdom = {}
 }
 
@@ -23,20 +24,25 @@ FKB.defaults = {
 function FKB.Initialize(event, addonName)
     if addonName ~= FKB.name then return end
 
+    -- Unregister Addon Loaded event
     EVENT_MANAGER:UnregisterForEvent(FKB.name, EVENT_ADD_ON_LOADED)
 
+    -- Add Keybind option to Controls
     ZO_CreateStringId("SI_BINDING_NAME_SPREAD_WISDOM", "Spread Wisdom")
 
+    -- Load/create saved variables
     FKB.preferences = ZO_SavedVars:New("FatherKnowsBestWisdom", FKB.dbVersion, nil, FKB.defaults)
+
+    -- Init Additional Parts
     FKB.InitSettings()
+    FKB.InitSlashCommands()
 end
 
 
 function FKB.SpreadWisdom()
-    local wisdom = FKB.preferences.wisdom
 
     -- If no Wisdom saved
-    if (#FKB.GetKeys(wisdom) < 1) then
+    if (#FKB.GetKeys(FKB.preferences.wisdom) < 1) then
         d('No Wisdom Found!')
         return
     end
@@ -45,10 +51,27 @@ function FKB.SpreadWisdom()
     -- AND we've received salt recently
     if (FKB.preferences.autoSelect and FKB.saltySailor) then
         StartChatInput("", CHAT_CHANNEL_WHISPER, FKB.saltySailor)
+    else
+        StartChatInput("")
     end
 
-    -- Place Wisdom into chat box
-    CHAT_SYSTEM.textEntry:Open(FKB.GetRandom(wisdom))
+    -- If we should pick a random phrase
+    -- or open it up for completion
+    if (FKB.preferences.bindRandom) then
+        FKB.SpreadRandom()
+    else
+        CHAT_SYSTEM.textEntry:Open("/wisdom ")
+    end
+
+end
+
+
+function FKB.SpreadSpecific(selection)
+    CHAT_SYSTEM.textEntry:Open(FKB.preferences.wisdom[selection])
+end
+
+function FKB.SpreadRandom()
+    CHAT_SYSTEM.textEntry:Open(FKB.GetRandom(FKB.preferences.wisdom))
 end
 
 function FKB.DidReceiveWhisper(id, type, name, text)
